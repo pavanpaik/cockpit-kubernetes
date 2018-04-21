@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cockpit
+  labels:
+    app: cockpit-kubernetes
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: cockpit-kubernetes
+    tier: frontend
+  type: LoadBalancer
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: cockpit
+  labels:
+    app: cockpit-kubernetes
+spec:
+  selector:
+    matchLabels:
+      app: cockpit-kubernetes
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: cockpit-kubernetes
+        tier: frontend
+    spec:
+      containers:
+      - image: agentejo/cockpit
+        name: cockpit
+        ports:
+        - containerPort: 80
+          name: cockpit
+        env:
+        - name: COCKPIT_SESSION_NAME
+          value: cockpit
+        - name: COCKPIT_SALT
+          value: 2FA36319-6071-4C71-B565-AB825D448D70
+        - name: COCKPIT_DATABASE_SERVER
+          value: mongodb://cockpit-mongo
+        - name: COCKPIT_DATABASE_NAME
+          value: cockpit_master
+
+
