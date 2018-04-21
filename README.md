@@ -6,13 +6,11 @@ Implemented by following the stateful app setup example provided in kubernetes d
 https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/
 
 
-## Setup
+## Setup - setup.sh
 
 ### Verifgy that kubectl is installed
 
 ```kubectl version```
-
-### Create a Secret for MySQL Password
 
 ### Create Persistance Volume Claim
 
@@ -34,7 +32,7 @@ https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persis
 
 http://localhost/
 
-## Cleaning up
+## Cleaning up - cleanup.sh
 
 
 ### Delete all Deployments and Services
@@ -49,3 +47,8 @@ kubectl delete service -l app=cockpit-kubernetes
 ```
 kubectl delete pvc -l app=cockpit-kubernetes
 ```
+
+
+## Reference
+
+https://stackpointcloud.com/community/tutorial/getting-started-with-digitalocean-block-storage-and-kubernetes
