@@ -16,13 +16,15 @@ https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persis
 
 ```kubectl create -f cockpit-pvc.yaml```
 
-### Deploy Mongo
+### Deploy Mongo Cluster
 
-```kubectl create -f mongo-deployment.yaml```
+```kubectl create -f mongo-statefulset.yaml```
 
 ### Deploy Cockpit
 
 ```kubectl create -f cockpit-deployment.yaml```
+
+*Note:* This would connect to the mongo replicaset created in previous step
 
 ### Verify status of all nodes using
 
